@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"
+	href="res/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<script src="res/js/jquery/jquery-1.9.1.js"></script>
+<script src="res/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="res/js/teacher-main.js"></script>
+<script type="text/javascript" src="res/js/tabItem.js"></script>
+<script type="text/javascript" src="res/js/course.js"></script>
+<script type="text/javascript" src="res/js/loadTeacher.js"></script>
+<link rel="stylesheet" type="text/css" href="res/css/teacher_main.css">
+<title>教师端</title>
+</head>
+<body onload="loadData()">
+	<div id="header">
+		<span id="sign"><a class="aInHead" href="#TMSG" id="TeacherMsg"
+			data-toggle="modal" style="text-decoration: none;">教师端</a> </span> <span><a
+			class="aInHead" href="#loginOutDialog" id="loginOut"
+			data-toggle="modal" style="text-decoration: none;color:#FFF">注销</a> <span
+			id="username" style="text-decoration: none;"></span> </span>
+	</div>
+
+	<div id="TabMain">
+		<div class="tabItemContainer">
+			<li><a class="tabItemCurrent" id="UserManage">教师管理</a></li>
+			<li><a id="CourseManage">课程管理</a></li>
+			<li><a>选课管理</a></li>
+
+		</div>
+		<div class="tabBodyContainer">
+			<div class="tabBodyItem tabBodyCurrent" id="User">
+				<div class="table_main">
+					<table class="table">
+						<p>
+						<h3>用户管理</h3>
+						</p>
+						<caption>
+							<button type="button" class="btn btn-primary btn-lg"
+								id="user_add" data-toggle="modal" data-target="#myModal"
+								onclick="optionUserData(this);">新增</button>
+							<button type="button" class="btn btn-primary btn-lg"
+								id="user_delete" onclick="optionUserData(this);">删除</button>
+							<button type="button" class="btn btn-primary btn-lg"
+								id="user_edit" data-toggle="modal" data-target="#myModal"
+								onclick="optionUserData(this);">编辑</button>
+
+							<button type="button" class="btn btn-primary btn-lg"
+								id="user_find" onclick="optionUserData(this);">查询</button>
+							<input type="text" id="t_code" placeholder="按工号查询"
+								class="t_input"> <input type="text" id="t_userName"
+								placeholder="按姓名查询" class="t_input"> <input type="text"
+								id="t_all" placeholder="全文搜索" class="t_input">
+						</caption>
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>工号</th>
+								<th>姓名</th>
+								<th>性别</th>
+								<th>密码</th>
+								<th>年龄</th>
+								<th>职位</th>
+								<th>班级</th>
+								<th>类型</th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="tabBodyItem">
+				<div class="table_main">
+					<table class="table" id="class_msg">
+						<p>
+						<h3>课程管理</h3>
+						</p>
+						<p>
+							<button type="button" class="btn btn-primary btn-lg "
+								id="class_add" data-toggle="modal" data-target="#classModal"
+								onclick="optionClassData(this,'class_msg_table')">新增</button>
+							<button type="button" class="btn btn-primary btn-lg "
+								id="class_delete"
+								onclick="optionClassData(this,'class_msg_table');">删除</button>
+							<button type="button" class="btn btn-primary btn-lg "
+								data-target="#classModal" id="class_edit" data-toggle="modal"
+								onclick="optionClassData(this,'class_msg_table');">编辑</button>
+							<button type="button" class="btn btn-primary btn-lg "
+								id="class_find"
+								onclick="optionClassData(this,'class_msg_table');">查询</button>
+							<input type="text" id="c_code" placeholder="按课程号查询"
+								class="c_input"> <input type="text" id="c_name"
+								placeholder="按课程名查询" class="c_input"> <input type="text"
+								id="c_all" placeholder="全文搜索" class="c_input">
+						</p>
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>课程ID</th>
+								<th>课程名</th>
+								<th>课程类型</th>
+								<th>学分</th>
+								<th>指导老师</th>
+								<th>限选人数</th>
+								<th>已选人数</th>
+								<th>可选人数</th>
+								<th>学期</th>
+							</tr>
+						</thead>
+						<tbody id="class_msg_table">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="tabBodyItem">
+				<div class="table_main">
+					<table class="table" id="sc_msg">
+						<p>
+						<h3>选课管理</h3>
+						</p>
+						<p>
+							<button type="button" class="btn btn-primary btn-lg" id="sc_add"
+								data-toggle="modal">新建选课</button>
+							<button type="button" class="btn btn-primary btn-lg" id="sc_open">
+								开放选课</button>
+							<button type="button" class="btn btn-primary btn-lg"
+								id="sc_close">关闭选课</button>
+						</p>
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>学期</th>
+								<th>开始时间</th>
+								<th>结束时间</th>
+								<th>当前状态</th>
+							</tr>
+						</thead>
+						<tbody id="sc_msg_table">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 管理用户窗口（Modal） -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">用户</h4>
+				</div>
+				<form id='form'>
+					<div class="modal-body" id="modal-body">
+						<input type="text" class="form-control" id="m_id"
+							style="display: none;"> <label for="m_code">用户名:</label>
+						<input type="text" class="form-control" id="m_code"
+							placeholder="请输入工号"> <label for="m_name">姓名:</label> <input
+							type="text" class="form-control" id="m_name" placeholder="请输入姓名">
+						<label for="m_sex">性别:</label> <select class="form-control"
+							id="m_sex">
+							<option>男</option>
+							<option>女</option>
+						</select> <label for="m_passWord">密码:</label> <input type="text"
+							class="form-control" id="m_passWord" placeholder="请输入密码">
+						<label for="m_age">年龄:</label> <input type="text"
+							class="form-control" id="m_age" placeholder="请输入年龄"> <label
+							for="m_age">班级/职称:</label> <input type="text"
+							class="form-control" id="m_info" placeholder="请输入信息"> <label
+							for="m_type">类型:</label> <select class="form-control" id="m_type">
+							<option>老师</option>
+							<option>学生</option>
+						</select>
+					</div>
+				</form>
+				<div class="modal-footer">
+					<button id='btnSave' type="button" class="btn btn-default"
+						data-dismiss="modal">保存</button>
+					<button id='btnModify' type="button" class="btn btn-primary">提交更改</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+
+	<!-- 管理课程窗口（Modal） -->
+	<div class="modal fade" id="classModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel2">课程</h4>
+				</div>
+
+				<form id='courseForm'>
+					<div class="modal-body" id="class_modal">
+						<input type="hidden" class="form-control" id="c_id"> <label
+							for="m_classId">课程ID:</label> <input type="text"
+							class="form-control" id="m_classId" placeholder="请输入课程ID">
+						<label for="m_className">课程名:</label> <input type="text"
+							class="form-control" id="m_className" placeholder="请输入课程名">
+						<label for="m_classType">课程类型:</label> <input type="text"
+							class="form-control" id="m_classType" placeholder="请输入课程类型">
+						<label for="m_score">学分:</label> <input type="text"
+							class="form-control" id="m_score" placeholder="请输入学分"> <label
+							for="m_limitStuNum">限选人数:</label> <input type="text"
+							class="form-control" id="m_limitStuNum" placeholder="请输入限选人数">
+						<label for="m_limitStuNum">任课老师:</label> <select
+							class="form-control" id="courseTeacher">
+						</select>
+					</div>
+				</form>
+				<div class="modal-footer">
+					<button id='btnSaveClass' type="button" class="btn btn-default"
+						data-dismiss="modal">保存</button>
+					<button id='btnUpdateClass' type="button" class="btn btn-primary">提交更改</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+	<!-- 提示退出 -->
+	<div class="modal fade" id="loginOutDialog" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel3">提示</h4>
+				</div>
+				<div class="modal-body">
+					<p>确认退出？</p>
+				</div>
+				<div class="modal-footer">
+					<button id="yes" type="button" class="btn btn-default">确认</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+	<div class="modal fade" id="TMSG" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel3">教师信息</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table">
+						<tr>
+							<td>I&nbsp;D</td>
+							<td id="t_id"></td>
+						</tr>
+						<tr>
+							<td>姓名</td>
+							<td id="t_teacherCode"></td>
+						</tr>
+						<tr>
+							<td>姓名</td>
+							<td id="t_name"></td>
+						</tr>
+						<tr>
+							<td>性别</td>
+							<td id="t_sex"></td>
+						</tr>
+						<tr>
+							<td>年龄</td>
+							<td id="t_age"></td>
+						</tr>
+						<tr>
+							<td>职位</td>
+							<td id="t_rank"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+
+
+</body>
+</html>

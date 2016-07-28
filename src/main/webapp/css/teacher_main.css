@@ -1,0 +1,131 @@
+body {
+	background-color: #efefef;
+}
+
+#header {
+	width: 100%;
+	height: 20%;
+}
+
+#TabMain {
+	width: 100%;
+	height: 90%;
+}
+
+.tabItemContainer {
+	width: 10%;
+	height: 500px;
+	float: left;
+}
+
+.tabBodyContainer {
+	width: 75%;
+	height: 90%;
+	float: left;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.tabItemContainer>li {
+	list-style: none;
+	text-align: center;
+}
+
+.tabItemContainer>li>a {
+	float: left;
+	width: 100%;
+	padding: 20px 0 20px 0;
+	font: 16px "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif;
+	color: #808080;
+	cursor: pointer;
+	text-decoration: none;
+	border: 1px solid transparent;
+}
+
+.tabItemCurrent {
+	background-color: #fff;
+	border: 1px solid #ccc !important;
+	border-right: 1px solid #fff !important;
+	position: relative;
+	-webkit-border-radius: 5px 0 0 5px;
+	-moz-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+}
+
+.tabItemContainer>li>a:hover {
+	color: #333;
+}
+
+.tabBodyItem {
+	position: absolute;
+	width: 90%;
+	height: 80%;
+	display: none;
+	text-align: left;
+}
+
+.tabBodyItem>p {
+	font: 13px "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif;
+	margin-top: 30px;
+}
+
+.tabBodyItem>p>a {
+	text-decoration: none;
+	color: #0F3;
+}
+
+.tabBodyCurrent {
+	display: block;
+}
+
+.table_main {
+	margin: 20px;
+}
+
+#sign {
+	float: left;
+	width: 70px;
+	font-family: "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif;
+	margin: 10px;
+}
+
+.loginOut {
+	display: inline-block;
+	float: right;
+	margin: 10px;
+	outline: none;
+	border: none;
+}
+
+#header{
+	width: 100%;
+	height: 55px;
+	background: #;
+	font: 20px "Î¢ÈíÑÅºÚ", Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+.btn{
+	margin:5px;
+	height:35px;
+	width:auto;
+	text-align:center;
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
+	border-radius: 4px;
+	background-color: #444;
+	color:#fff;
+	cursor:pointer;
+	border-color: #444;
+}
+.btn:hover{
+	background-color: #111;
+}
+.c_input{
+	width:90px;
+	margin:3px;
+}
+.t_input{
+	width:90px;
+	margin:3px;
+}

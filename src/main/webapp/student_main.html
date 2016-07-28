@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"
+	href="res/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<script src="res/js/jquery/jquery-1.9.1.js"></script>
+<script src="res/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="res/js/teacher-main.js"></script>
+<script type="text/javascript" src="res/js/tabItem.js"></script>
+<script type="text/javascript" src="res/js/course.js"></script>
+<script type="text/javascript" src="res/js/student_main.js"></script>
+<link rel="stylesheet" type="text/css" href="res/css/teacher_main.css">
+<title>学生端</title>
+</head>
+<body onload="loadStu()">
+	<div id="header">
+		<span id="sign"><a style="text-decoration: none;color: #FFF"
+			href="#SMSG" id="StudentMsg" data-toggle="modal">学生端</a> </span> <span><a
+			href="#loginOutDialog" id="loginOut" data-toggle="modal"
+			style="text-decoration: none;color: #FFF">注销</a> </span>
+	</div>
+	<div id="TabMain">
+		<div class="tabItemContainer">
+			<li><a class="tabItemCurrent" id="UserManage">学生选课</a>
+			</li>
+			<li><a id="SelectCourse">查看选课</a>
+			</li>
+		</div>
+		<div class="tabBodyContainer">
+			<div class="tabBodyItem tabBodyCurrent" id="selectClass">
+				<div class="table_main">
+					<table class="table" id="class_msg">
+						<h3>学生端-网上选课</h3>
+						<button type="button" class="btn btn-primary btn-lg" id="add_sc">提交选课</button>
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>课程号</th>
+								<th>课程名</th>
+								<th>类别</th>
+								<th>学分</th>
+								<th>授课老师</th>
+								<th>限选</th>
+								<th>已选</th>
+								<th>可选</th>
+								<th>年份</th>
+							</tr>
+						</thead>
+						<tbody id="class_msg_table">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="tabBodyItem" id="selectResult">
+				<div class="table_main">
+					<table class="table" id="selectResult">
+						<p>
+						<h3>查看结果</h3>
+						</p>
+						<button type="button" class="btn btn-primary btn-lg"
+							id="delete_sc">退选</button>
+						<button type="button" class="btn btn-primary btn-lg"
+							id="query_allsc">查看结果</button>
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>课程号</th>
+								<th>课程名</th>
+								<th>类别</th>
+								<th>学分</th>
+								<th>授课老师</th>
+								<th>限选</th>
+								<th>已选</th>
+								<th>可选</th>
+								<th>年份</th>
+							</tr>
+						</thead>
+						<tbody id="scresult_msg_table">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 学生信息 -->
+	<div class="modal fade" id="SMSG" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel3">学生信息</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table">
+						<tr>
+							<td>ID</td>
+							<td id="Stuid"></td>
+						</tr>
+						<tr>
+							<td>学号</td>
+							<td id="code"></td>
+						</tr>
+						<tr>
+							<td>姓名</td>
+							<td id="name"></td>
+						</tr>
+						<tr>
+							<td>性别</td>
+							<td id="sex"></td>
+						</tr>
+						<tr>
+							<td>年龄</td>
+							<td id="age"></td>
+						</tr>
+						<tr>
+							<td>班级</td>
+							<td id="rank"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+
+
+
+	<!-- 提示退出 -->
+	<div class="modal fade" id="loginOutDialog" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel2">提示</h4>
+				</div>
+				<div class="modal-body">
+					<p>确认退出？</p>
+				</div>
+				<div class="modal-footer">
+					<button id="yes" type="button" class="btn btn-default">确认</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+</body>
+</html>
